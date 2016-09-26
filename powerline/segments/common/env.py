@@ -9,13 +9,17 @@ from powerline.segments import Segment, with_docstring
 
 
 @requires_segment_info
-def environment(pl, segment_info, variable=None):
+def environment(pl, segment_info, variable=None, abbrev=None):
 	'''Return the value of any defined environment variable
 
 	:param string variable:
 		The environment variable to return if found
 	'''
-	return segment_info['environ'].get(variable, None)
+	val = segment_info['environ'].get(variable, None)
+	if abbrev and val:
+		return abbrev
+	return val
+
 
 
 @requires_segment_info
